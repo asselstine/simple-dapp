@@ -1,6 +1,6 @@
 # Simple Dapp
 
-This is a very simple tutorial dapp that demonstrates how to mint a custom ERC20 token.  The repository contains the complete app, but you are encouraged to start from scratch using the tutorial below.
+This is a simple tutorial dapp that demonstrates how to mint a custom ERC20 token.  The repository contains the complete app, but you are encouraged to start from scratch using the tutorial below.
 
 # Creating Your First Ethereum Dapp
 
@@ -388,4 +388,12 @@ MyTokenContract.deployed().then(function (instance) {
 
 Now refresh the page and click the button: we can see the total supply increase!
 
-That's it for functionality.  I'm going to leave it to the reader to implement account balances and transfers.
+# The Joys of ERC-20
+
+Because we have implemented the token using the ERC-20 standard, MetaMask will be able to inspect it.  Copy the MyToken contract address from the compilation artifact.  Now click on MetaMask in the browser, click on the tokens tab, and click 'Add Token'.  In the form paste the address of the contract.  The rest of the fields should update.
+
+Since you've been minting the tokens to yourself (i.e. your first account at web3.eth.accounts[0]), you'll be able to see your token balance!  Cool eh?
+
+# Next steps
+
+That's it for functionality.  I'm going to leave it to the reader to implement account balances and transfers.  Next we'll tackle deploying to Ropsten.
