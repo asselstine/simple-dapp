@@ -48,7 +48,7 @@ npm init
 npm install -E --save zeppelin-solidity
 ```
 
-# Code
+# Creating the Contract
 
 Now let's create our token!  Create a new smart contract:
 
@@ -79,6 +79,8 @@ truffle compile
 ```
 
 You should see new artifacts in `build/contracts` including `MyToken.json`
+
+# Building the Front End
 
 Let's build out a simple front-end to interact with this contract.  We're going to commit the build artifacts and work within the build directory for simplicity.
 
@@ -140,7 +142,9 @@ serve build
 
 If you navigate your browser to http://localhost:5000 you should now see the index.html page.
 
-# Setting up our JavaScript
+# Setup Truffle Contract
+
+Let's setup the truffle contract code in the front end.
 
 Remember our generated MyToken.json file from earlier?  The `truffle-contracts` package uses this file to allow JavaScript to interact with the contract.  The JSON file contains the contract ABI and the deployed addresses for each network, among other things.
 
@@ -187,6 +191,8 @@ MyTokenContract.setProvider(new Web3.providers.HttpProvider('http://localhost:95
 ```
 
 Hmm...but wait.  We don't have an Ethereum node running locally!  So let's start one.
+
+# Deploying to a Local Node
 
 Truffle conveniently provides a `develop` command that starts a local blockchain that initializes a set of accounts with Ether.  Let's use it now.
 
@@ -266,6 +272,8 @@ truffle migrate
 You will now see Truffle deploy the contracts to the network.  A number of addresses will be printed to screen, but the most important ones will be beside the contract names.  These addresses are where the contracts are deployed to the network.  These addresses are also added to the compilation artifacts so that the front-end code can discover the contract location.  You'll notice that the `build/contracts/MyToken.json` file now has a `networks` key with the corresponding address for the development network.
 
 Now that we have a local Ethereum node running and the contract has been deployed, let's go back to `index.js` and try interacting with the contract.
+
+# Connecting to the Local Node
 
 `truffle-contract` supplies a convenient method called `deployed()` that will use the JSON file to create a new contract instance with the correct address.  It uses promises so we'll add a callback that handles the instance.  Let's do it now:
 
