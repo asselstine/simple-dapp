@@ -101,7 +101,7 @@ Let's add a simple interface to the `index.html` file.  For simplicity we're goi
 
     <section class='hero is-info'>
       <div class='hero-body'>
-        <div class='container'>
+        <div class='container has-text-centered'>
           <h1 class='title'>
             My Token
           </h1>
@@ -344,7 +344,7 @@ First let's add a mint button just below the total supply:
   <div class='container has-text-centered'>
     <p class="heading">Tokens in Circulation</p>
     <p class="title" id='total-supply'>Unknown</p>
-    <button class='button is-primary' id='mint'>Mint</button>
+    <button class='button is-primary is-medium' id='mint'>Mint</button>
   </div>
 </section>
 ```
