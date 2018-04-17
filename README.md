@@ -162,7 +162,7 @@ touch build/index.js
 Add this before the closing `</body>` tag in `build/index.html`:
 
 ```html
-<script type='text/javscript' src='/index.js'></script>
+<script type='text/javascript' src='/index.js'></script>
 ```
 
 Now in `build/index.js` let's setup our JavaScript contract object:
@@ -236,7 +236,7 @@ Using network 'development'.
 Network up to date.
 ```
 
-But we know that our network isn't up-to-date.  This is because we need to create a new Truffle migration; a migration is a JavaScript script that updates contracts on the network.  Let's create a new one:
+But we know that our network isn't up-to-date; it's missing the MyToken contract.  This is because we need to create a new Truffle migration; a migration is a JavaScript script that updates contracts on the network.  Let's create a new one:
 
 ```bash
 truffle create migration create_my_token
@@ -284,13 +284,15 @@ $(document).ready(function () {
 
 However, upon refreshing you will still see 'Contract has not been deployed to network'.  This is because our front-end doesn't know which network it should be running against; the selected network is configured by the browser extension that is managing the user's wallet.
 
-Install the MetaMask browser extension now, for either Chrome or Firefox.  When the extension loads, click on it and from the network drop-down select 'Custom RPC'.  Enter `http://localhost:9545` as the URL.
+Install the MetaMask browser extension now, for either Chrome or Firefox.  Once the extension is installed, click on the icon and from the network drop-down in the dialog select 'Custom RPC'.  Enter `http://localhost:9545` as the URL.
 
-Now enter the `truffle develop` 12 word mnemonic as the seed phrase so that you can have an account with Ether.  Use whatever password you like.  You can cut-and-paste from the terminal that `truffle-develop` is running in, or just copy and paste `candy maple cake sugar pudding cream honey rich smooth crumble sweet treat`.  The mnemonic never changes.
+Now open MetaMask again and click 'Restore from Seed Phrase'.  Enter the `truffle develop` 12 word mnemonic as the seed phrase.  Use whatever password you like.  You can cut-and-paste the mnemonic from the terminal that `truffle-develop` is running in, or just copy and paste `candy maple cake sugar pudding cream honey rich smooth crumble sweet treat`.  The mnemonic never changes.
 
-MetaMask should now show something like 97 Ether in the account.
+MetaMask should now show something like 99 Ether in the account.
 
 When you refresh the page, you should see the contract instance being output to the console.
+
+# Reading from the Contract
 
 Let's interact with the contract.  Let's use the [totalSupply()](https://github.com/OpenZeppelin/zeppelin-solidity/blob/0926729c8f19f6ed147c46f5c893a012be815a5a/contracts/token/ERC20/BasicToken.sol#L22) function to get the total supply of tokens and populate the index.html with it.  We'll make it a function so we can call it elsewhere.
 
@@ -300,7 +302,7 @@ Below our main 'hero' section in `build/index.html` let's add a header for the t
   <section class='section'>
     <div class='container has-text-centered'>
       <p class="heading">Tokens in Circulation</p>
-      <p class="title" id='total-tokens'>Unknown</p>
+      <p class="title" id='total-supply'>Unknown</p>
     </div>
   </section>
 ```
@@ -330,6 +332,8 @@ $(document).ready(function () {
 ```
 
 When we refresh the page we should now see 'Unknown' get replaced with '0'. Cool!  Let's mint some tokens.
+
+# Writing to the Contract
 
 Since we are logged-in as the account that deployed the code, we will be allowed to mint tokens.  Let's use the [mint()](https://github.com/OpenZeppelin/zeppelin-solidity/blob/0926729c8f19f6ed147c46f5c893a012be815a5a/contracts/token/ERC20/MintableToken.sol#L31) function to mint some new tokens for ourselves.
 
@@ -363,6 +367,8 @@ $(document).ready(function () {
 ```
 
 Now when you refresh the page and click the button MetaMask will present you with a transaction confirmation dialog.  You can see the gas estimate and configure the limits and gas price.  Just click 'Submit' to submit the transactions.  After a few seconds refresh the page and you should see the newly minted tokens!  If it doesn't work give it a second and refresh again.
+
+# Listening to Events
 
 It's annoying that we have to refresh the page to see the update.  Instead, let's use the [Mint event](https://github.com/OpenZeppelin/zeppelin-solidity/blob/0926729c8f19f6ed147c46f5c893a012be815a5a/contracts/token/ERC20/MintableToken.sol#L34) that is logged by the smart contract when new tokens are minted.
 
