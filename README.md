@@ -1,6 +1,6 @@
 # Simple Dapp
 
-This is a simple tutorial dapp that demonstrates how to mint a custom ERC20 token.  The repository contains the complete app, but you are encouraged to start from scratch using the tutorial below.
+This is a tutorial dapp that demonstrates how to mint a custom ERC20 token.  The repository contains the complete app, but you are encouraged to start from scratch using the tutorial below.
 
 # Creating Your First Ethereum Dapp
 
@@ -82,7 +82,7 @@ You should see new artifacts in `build/contracts` including `MyToken.json`
 
 # Building the Front End
 
-Let's build out a simple front-end to interact with this contract.  We're going to commit the build artifacts and work within the build directory for simplicity.
+Let's build out a front-end to interact with this contract.  We're just going to commit the build artifacts and work within the build directory.
 
 Create a new file:
 
@@ -90,7 +90,7 @@ Create a new file:
 touch build/index.html
 ```
 
-Let's add a simple interface to the `index.html` file.  For simplicity we're going to simply download the minimized assets from Github for Truffle and Web3:
+Let's add an interface to the `index.html` file.  For simplicity we're going to download the minimized assets from Github for Truffle and Web3:
 
 ```html
 <!DOCTYPE html>
@@ -128,7 +128,7 @@ wget https://raw.githubusercontent.com/ethereum/web3.js/develop/dist/web3.min.js
 wget https://raw.githubusercontent.com/trufflesuite/truffle-contract/develop/dist/truffle-contract.min.js
 ```
 
-Finally let's serve our application.  Install the simple `serve` npm package:
+Finally let's serve our application.  Install the `serve` npm package:
 
 ```
 npm install -g serve
